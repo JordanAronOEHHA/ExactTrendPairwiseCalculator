@@ -3,8 +3,9 @@ library(DT)
 
 source("StatTestFunctions.R")
 # path = "C:/Users/Jordan.Aron/OneDrive - California OEHHA/Documents/PvalCalc/ExactTrendPairwiseCalculator"
-# shinylive::export(appdir = path, destdir = "docs")
+# shinylive::export(appdir = "C:/Users/Jordan.Aron/OneDrive - California OEHHA/Documents/PvalCalc/ExactTrendPairwiseCalculator", destdir = "docs")
 # httpuv::runStaticServer("docs")
+# https://JordanAronOEHHA.github.io/ExactTrendPairwiseCalculator/
 
 ui <- fluidPage(
   titlePanel("C-A Trend and Pairwise P-value Calculator"),
