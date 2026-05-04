@@ -2,9 +2,9 @@ library(shiny)
 library(DT)
 
 source("StatTestFunctions.R")
-# path = "C:/Users/Jordan.Aron/OneDrive - California OEHHA/Documents/PvalCalc/ExactTrendPairwiseCalculator"
-# shinylive::export(appdir = "c:/Users/Jordan.Aron/OneDrive - California OEHHA/Documents/Chemicals/Ethoprop/myapp", destdir = "docs")
-# httpuv::runStaticServer("docs")
+path = "C:/Users/Jordan.Aron/OneDrive - California OEHHA/Documents/PvalCalc/ExactTrendPairwiseCalculator"
+shinylive::export(appdir = path, destdir = "docs")
+httpuv::runStaticServer("docs")
 
 ui <- fluidPage(
   titlePanel("C-A Trend and Pairwise P-value Calculator"),
@@ -21,9 +21,9 @@ ui <- fluidPage(
 
       conditionalPanel(
         "input.input_mode == 'Text Input'",
-        textInput("dose_text", "Dose (space‑separated):", "0 1.24 2.91 5.91"),
-        textInput("inc_text", "Incidence (space‑separated):", "0 4 8 13"),
-        textInput("n_text", "Sample Size (space‑separated):", "34 40 36 32")
+        textInput("dose_text", "Dose (space‑separated):", "0 1.5 2.75 4.33"),
+        textInput("inc_text", "Incidence (space‑separated):", "1 5 7 10"),
+        textInput("n_text", "Sample Size (space‑separated):", "41 39 40 34")
       ),
 
       conditionalPanel(
@@ -53,9 +53,9 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 
   ## ---- Build 10‑group padded default table ----
-  default_dose  <- c(0, 1.24, 2.91, 5.91)
-  default_inc   <- c(0, 4, 8, 13)
-  default_n     <- c(34, 40, 36, 32)
+  default_dose  <- c(0, 1.5, 2.75, 4.33)
+  default_inc   <- c(1, 5, 7, 10)
+  default_n     <- c(41, 39, 40, 34)
 
   max_groups <- 10
 
