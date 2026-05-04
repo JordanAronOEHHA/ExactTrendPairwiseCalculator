@@ -15,7 +15,7 @@ source("StatTestFunctions.R")
 ## Users can input data via text fields, an editable table, or by uploading a CSV
 
 ui <- fluidPage(
-  titlePanel("C-A Trend and Pairwise P-value Calculator"),
+  titlePanel("Exact C-A Trend and Fisher Pairwise P-value Calculator"),
 
   sidebarLayout(
     sidebarPanel(
