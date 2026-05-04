@@ -14,7 +14,7 @@ source("StatTestFunctions.R")
 ## This app allows users to input dose, incidence, and sample size data calculates the Cochran-Armitage trend test p-value and pairwise Fisher's exact test p-values. 
 ## Users can input data via text fields, an editable table, or by uploading a CSV
 
-# ui <- fluidPage(
+ui <- fluidPage(
   titlePanel("C-A Trend and Pairwise P-value Calculator"),
 
   sidebarLayout(
