@@ -50,6 +50,14 @@ ui <- fluidPage(
         helpText("CSV should have 3 rows: Dose, Incidence, Sample size.")
       ),
 
+      radioButtons(
+        "trend_tail",
+        "Trend Test Tail:",
+        choices = c("Upper (Standard)" = "upper",
+                    "Lower (Reversed)"  = "lower"),
+        selected = "upper"
+      ),
+
       br(),
       actionButton("run", "Run Tests")
     ),
@@ -339,7 +347,8 @@ server <- function(input, output, session) {
     ############# Stat Calculation #############
 
     if (length(n_vec) >= 3) {
-      trend_pval <- CalculateTrendPval(incidence_vec, n_vec, dose_vec)
+      tail_choice <- input$trend_tail
+      trend_pval <- CalculateTrendPval(incidence_vec, n_vec, dose_vec, tail = tail_choice)
     } else if (length(n_vec) == 2) {
       trend_pval <- NA
     } else {
@@ -388,8 +397,8 @@ server <- function(input, output, session) {
     output$footnote <- renderUI({
     div(
       style = "margin-top: 10px; font-size: 1.3em;",
-      "C-A exact trend test p-value shown below group 1.",
-      "Corresponding Fisher exact pairwise test p-value below other groups.",
+      "C-A exact trend test p-value (upper/lower dependent on user choice) shown below group 1.",
+      "Corresponding Fisher exact pairwise test one-sided upper p-value below other groups.",
       "Asterisks indicate significant results:",
       "* p < 0.05, ** p < 0.01, *** p < 0.001."
     )

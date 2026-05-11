@@ -18,8 +18,14 @@ CalculatePvals <- function(incidence_vec, n_vec, dose_vec){
 # @param incidence_vec: vector of tumor incidences for each dose group
 # @param n_vec: vector of total number of animals for each dose group
 # @param dose_vec: vector of dose levels corresponding to each group
-CalculateTrendPval <- function(incidence_vec, n_vec, dose_vec){
-  return(catt_exact(dose_vec,n_vec,incidence_vec)$exact.pvalue)
+CalculateTrendPval <- function(incidence_vec, n_vec, dose_vec, tail = "upper"){
+
+    #library only returns right tail
+    #need to calculate opposite and return right tail (thus getting left tail)
+    if (tail == "lower"){
+        return(catt_exact(dose_vec,n_vec,n_vec - incidence_vec)$exact.pvalue)
+    }
+    return(catt_exact(dose_vec,n_vec,incidence_vec)$exact.pvalue)
 }
 
 # Helper function to calculate and print the C-A exact trend test p-value
